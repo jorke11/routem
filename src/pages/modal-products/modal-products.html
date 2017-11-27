@@ -20,7 +20,9 @@
 
 <ion-content padding>
     <ion-list>
-        
+        <ion-item>
+            <button ion-button (click)="takePhoto()" full>Foto Parqueadero</button>
+          </ion-item>
           <ion-item>
             <ion-label floating>Dirección</ion-label>
             <ion-input type="text" value="" [(ngModel)]="data.address"></ion-input>
@@ -39,6 +41,18 @@
           <ion-item>
               <button ion-button (click)="newProduct()" full>Guardar</button>
           </ion-item>
-        
+          <ion-item>
+            <ion-card>
+              <img [src]="base64Image" *ngIf="base64Image">
+            </ion-card>
+          </ion-item>
+          
+            
+                
+              
+            
+          
+          
+
         </ion-list>
 </ion-content>

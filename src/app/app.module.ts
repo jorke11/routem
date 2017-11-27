@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProductosPage } from '../pages/productos/productos';
 import { ProfilePage } from '../pages/profile/profile';
 import { ModalProductsPage } from '../pages/modal-products/modal-products';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ModalProductsPage } from '../pages/modal-products/modal-products';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
