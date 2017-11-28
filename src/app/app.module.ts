@@ -10,7 +10,13 @@ import { LoginPage } from '../pages/login/login';
 import { ProductosPage } from '../pages/productos/productos';
 import { ProfilePage } from '../pages/profile/profile';
 import { ModalProductsPage } from '../pages/modal-products/modal-products';
+import { GoRoutePage } from '../pages/go-route/go-route';
+import { RegisterPage } from '../pages/register/register';
+
 import { Camera } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
+
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -19,12 +25,14 @@ import { Camera } from '@ionic-native/camera';
     LoginPage,
     ProductosPage,
     ProfilePage,
-    ModalProductsPage
+    ModalProductsPage,
+    GoRoutePage,
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,12 +41,16 @@ import { Camera } from '@ionic-native/camera';
     LoginPage,
     ProductosPage,
     ProfilePage,
-    ModalProductsPage
+    ModalProductsPage,
+    GoRoutePage,
+    RegisterPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
+    Geolocation,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

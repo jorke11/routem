@@ -21,7 +21,9 @@
 <ion-content padding>
     <ion-list>
         <ion-item>
-            <button ion-button (click)="takePhoto()" full>Foto Parqueadero</button>
+            <button ion-button (click)="takePhoto()" full>
+              Foto Parqueadero <ion-icon name="camera"></ion-icon>
+            </button>
           </ion-item>
           <ion-item>
             <ion-label floating>Dirección</ion-label>
@@ -30,12 +32,12 @@
         
           <ion-item>
             <ion-label floating>Disponible</ion-label>
-            <ion-input type="text" [(ngModel)]="data.available"></ion-input>
+            <ion-input type="number" [(ngModel)]="data.available"></ion-input>
           </ion-item>
 
           <ion-item>
               <ion-label floating>Valor</ion-label>
-              <ion-input type="text" [(ngModel)]="data.value"></ion-input>
+              <ion-input type="number" [(ngModel)]="data.value"></ion-input>
             </ion-item>
 
           <ion-item>
@@ -43,7 +45,7 @@
           </ion-item>
           <ion-item>
             <ion-card>
-              <img [src]="base64Image" *ngIf="base64Image">
+              <img [src]="data.img" *ngIf="data.img">
             </ion-card>
           </ion-item>
           

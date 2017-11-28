@@ -1,8 +1,8 @@
+import { RegisterPage } from './../pages/register/register';
 import { Component,ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -42,6 +42,11 @@ export class MyApp {
 
   goToPage(page){
     this.nav.setRoot(page);
+ }
+
+ closeSession(){
+  localStorage.removeItem("token");
+  this.nav.setRoot(LoginPage);
  }
 }
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import {Http,Headers} from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -10,14 +12,12 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class ModalProductsPage {
   public data:any;
   public stakeholder_id:number;
-  public base64Image:string;
-  public photo:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera,
+    public http:Http,public viewCtrl:ViewController,public toastCtrl:ToastController) {
     this.data={};
-    this.stakeholder_id=this.navParams.get("stakeholder_id");
-    console.log(this.stakeholder_id);
-    this.photo=''
+    this.data.stakeholder_id=this.navParams.get("stakeholder_id");
+    console.log(this.stakeholder_id);   
   }
 
   ionViewDidLoad() {
@@ -38,22 +38,46 @@ export class ModalProductsPage {
     this.camera.getPicture(options).then((imageData) => {
 			// imageData is either a base64 encoded string or a file URI
 			// If it's base64:
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-      
-			//this.photos.push(this.base64Image);
-			
+      this.data.img = 'data:image/jpeg;base64,' + imageData;	
 
-		}, (err) => {
-			
+		}, (errc) => {
+			console.log(JSON.stringify(errc))
 		});
   }
 
   newProduct(){
-    console.log(this.data)
+    let headers = new Headers();
+    headers.append("Accept","application/json");
+    headers.append("Content-Type","application/json");
+    headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
+
+    this.http.post("http://192.168.1.4/newPark",this.data,{headers:headers})
+    .map(res=>res.json())
+    .subscribe(
+      data=>{
+        console.log("ok")
+        console.log(JSON.stringify(data));
+        this.data=data;
+        if(data.status==true){
+          let toast = this.toastCtrl.create({
+            message: 'Parqueadero creado',
+            duration: 2500
+          });
+          
+          toast.present();      
+        }
+
+      },
+      err=>{
+        console.log("error")
+        console.log(JSON.stringify(err));
+      }
+    );
+
   }
 
   close(){
-
+    this.viewCtrl.dismiss(this.data)
   }
 
 }

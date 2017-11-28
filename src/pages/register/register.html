@@ -1,0 +1,51 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registrase</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>¿Que tipo eres?</ion-label>
+        <ion-select popover [(ngModel)]="form.type_id">
+          <ion-option value="client">Cliente</ion-option>
+          <ion-option value="proveedor">Proveedor</ion-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item>
+          <ion-label fixed>Nombres</ion-label>
+          <ion-input type="email" [(ngModel)]="form.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>Apellidos</ion-label>
+          <ion-input type="email" [(ngModel)]="form.last_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="form.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="form.password"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label fixed>Confirmacion</ion-label>
+          <ion-input type="password" [(ngModel)]="form.confirmation"></ion-input>
+        </ion-item>
+      <ion-item>
+          <button ion-button (click)="registerStakeholder()" full>Registrar</button>
+      </ion-item>
+</ion-content>
