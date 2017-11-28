@@ -36,7 +36,7 @@ export class ProductosPage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.get("http://localhost/getPark/1",{headers: headers})
+    this.http.get("http://192.168.1.4/getPark/1",{headers: headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
@@ -56,7 +56,8 @@ export class ProductosPage {
     });
 
     modal.present();
-    modal.onDidDismiss(data=>console.log(data));
+    modal.onDidDismiss(data=>
+      this.data=data.data);
     console.log("nuevo");
   }
 

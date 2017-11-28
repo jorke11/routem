@@ -1,15 +1,10 @@
+import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HomePage } from '../home/home';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -35,7 +30,7 @@ export class LoginPage {
     headers.append("Content-Type","application/json");
     let param={email:this.email,password:this.password};
 
-    this.http.post("http://localhost/user/login",param,{headers:headers})
+    this.http.post("http://192.168.1.4/user/login",param,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
@@ -48,5 +43,9 @@ export class LoginPage {
         console.log(err);
       }
     );
+  }
+
+  registerPerson(){
+    this.navCtrl.setRoot(RegisterPage);
   }
 }
