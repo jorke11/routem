@@ -2,19 +2,10 @@ import { Component,ViewChild,ElementRef  } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Geolocation,Geoposition} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation'
 
 import { GoRoutePage } from './../go-route/go-route';
 
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
 
 declare var google:any
 
@@ -31,13 +22,14 @@ export class HomePage {
   marker:any
   latitude:any
   longitude:any
+  ip:any
 
   constructor(public navCtrl: NavController,public http:Http, public geolocation: Geolocation,
   public modalCtrl:ModalController) {
     this.data=[]
     this.latitude=''
     this.longitude=''
-
+    this.ip='http://18.220.4.248/'
   }
 
   ionViewDidLoad() {
@@ -94,7 +86,7 @@ export class HomePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.get("http://192.168.1.4/getParks",{headers:headers})
+    this.http.get(this.ip+"/getParks",{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{

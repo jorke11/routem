@@ -12,12 +12,14 @@ import 'rxjs/add/operator/map';
 export class ModalProductsPage {
   public data:any;
   public stakeholder_id:number;
+  ip:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera,
     public http:Http,public viewCtrl:ViewController,public toastCtrl:ToastController) {
     this.data={};
     this.data.stakeholder_id=this.navParams.get("stakeholder_id");
     console.log(this.stakeholder_id);   
+    this.ip='http://18.220.4.248/'
   }
 
   ionViewDidLoad() {
@@ -51,7 +53,7 @@ export class ModalProductsPage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.post("http://192.168.1.4/newPark",this.data,{headers:headers})
+    this.http.post(this.ip+"/newPark",this.data,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{

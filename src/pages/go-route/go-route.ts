@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController } 
 
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Geolocation,Geoposition} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation'
 
 declare var google:any
 
@@ -20,11 +20,12 @@ export class GoRoutePage {
   marker:any
   latitude:any
   longitude:any
-
+  ip:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocation: Geolocation,
   public viewController:ViewController,public http:Http,public toastCtrl:ToastController) {
     this.data = this.navParams.get("item")
+    this.ip='http://18.220.4.248/'
     
   }
 
@@ -111,7 +112,7 @@ export class GoRoutePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
     console.log(this.data)
-    this.http.post("http://192.168.1.4/reservePark",this.data,{headers:headers})
+    this.http.post(this.ip+"reservePark",this.data,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
