@@ -19,7 +19,10 @@ export class LoginPage {
   ip:any
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http) {
-    this.ip='http://18.220.4.248/'
+    //this.ip='http://18.220.4.248/'
+    this.ip='http://18.221.23.10:8080/'
+    
+    //this.ip="http://192.168.0.14/"
   }
 
   ionViewDidLoad() {
@@ -33,12 +36,13 @@ export class LoginPage {
     let param={email:this.email,password:this.password};
 
     this.http.post(this.ip+"/user/login",param,{headers:headers})
+
     .map(res=>res.json())
     .subscribe(
       data=>{
           this.data=data;
-          
           window.localStorage.setItem("token",data.token);
+          window.localStorage.setItem("role_id",data.role_id);
           this.navCtrl.push(HomePage);
       },
       err=>{

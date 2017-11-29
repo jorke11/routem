@@ -6,7 +6,6 @@ import {Geolocation} from '@ionic-native/geolocation'
 
 import { GoRoutePage } from './../go-route/go-route';
 
-
 declare var google:any
 
 @Component({
@@ -29,7 +28,10 @@ export class HomePage {
     this.data=[]
     this.latitude=''
     this.longitude=''
-    this.ip='http://18.220.4.248/'
+
+  //this.ip='http://18.220.4.248/'
+  //this.ip="http://192.168.0.14/"
+  this.ip='http://18.221.23.10:8080/'
   }
 
   ionViewDidLoad() {
@@ -86,7 +88,8 @@ export class HomePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.get(this.ip+"/getParks",{headers:headers})
+    this.http.get(this.ip+"getParks",{headers:headers})
+
     .map(res=>res.json())
     .subscribe(
       data=>{

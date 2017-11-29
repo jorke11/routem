@@ -19,10 +19,13 @@ import 'rxjs/add/operator/map';
 export class ProfilePage {
 
   public data:any
+  ip:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http) {
     this.data={};
+    this.ip='http://18.221.23.10:8080/'
     this.getProfile();
+   
   }
 
   ionViewDidLoad() {
@@ -35,7 +38,7 @@ export class ProfilePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.get("http://localhost/details",{headers: headers})
+    this.http.get(this.ip+"/details",{headers: headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
