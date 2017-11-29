@@ -30,13 +30,13 @@ export class LoginPage {
     headers.append("Content-Type","application/json");
     let param={email:this.email,password:this.password};
 
-    this.http.post("http://192.168.1.4/user/login",param,{headers:headers})
+    this.http.post("http://192.168.1.2/user/login",param,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
           this.data=data;
-          
           window.localStorage.setItem("token",data.token);
+          window.localStorage.setItem("role_id",data.role_id);
           this.navCtrl.push(HomePage);
       },
       err=>{

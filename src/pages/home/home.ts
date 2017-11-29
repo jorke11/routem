@@ -31,13 +31,15 @@ export class HomePage {
   marker:any
   latitude:any
   longitude:any
+  ip:any
 
   constructor(public navCtrl: NavController,public http:Http, public geolocation: Geolocation,
   public modalCtrl:ModalController) {
     this.data=[]
     this.latitude=''
     this.longitude=''
-
+    this.ip="http://192.168.1.2/"
+    console.log(window.localStorage.getItem("role_id"))
   }
 
   ionViewDidLoad() {
@@ -94,7 +96,7 @@ export class HomePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
 
-    this.http.get("http://192.168.1.4/getParks",{headers:headers})
+    this.http.get(this.ip+"getParks",{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{

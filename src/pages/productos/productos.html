@@ -5,10 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Productos</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Productos</ion-title>
+      </ion-navbar>
+    
 
 </ion-header>
 
@@ -30,6 +33,14 @@
                 Longitud: {{row.longitude}}<br>
               </p>
             </ion-card-content>
+            <ion-row>
+              <ion-col >
+                <button ion-button icon-right clear small (click)="delete(row)">
+                  <ion-icon name="trash"></ion-icon>
+                  <div> Borrar</div>
+                </button>
+              </ion-col>
+            </ion-row>
           </ion-card>
     </ion-list>
 

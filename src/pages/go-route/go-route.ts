@@ -1,3 +1,4 @@
+import { OrdersPage } from './../orders/orders';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 
@@ -6,26 +7,31 @@ import 'rxjs/add/operator/map';
 import {Geolocation,Geoposition} from '@ionic-native/geolocation'
 
 declare var google:any
-
+var address:any
 @IonicPage()
 @Component({
   selector: 'page-go-route',
   templateUrl: 'go-route.html',
 })
 export class GoRoutePage {
-
+  
   data:any
   @ViewChild("map") mapRef:ElementRef
   map:any
   marker:any
   latitude:any
   longitude:any
+  ip:any
+  geocoder:any
+  infowindow:any
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocation: Geolocation,
   public viewController:ViewController,public http:Http,public toastCtrl:ToastController) {
     this.data = this.navParams.get("item")
-    
+    this.ip='http://192.168.1.2/';
+    this.geocoder = new google.maps.Geocoder;
+    this.infowindow = new google.maps.InfoWindow;
   }
 
   ionViewDidLoad() {
@@ -35,13 +41,11 @@ export class GoRoutePage {
 
   getPosition(){
     
-        this.geolocation.getCurrentPosition().then((resp) => {
-          this.loadMap(resp)
-         }).catch((error) => {
-           console.log('Error getting location', error);
-         });
-    
-    
+    this.geolocation.getCurrentPosition().then((resp) => {
+        this.loadMap(resp)
+    }).catch((error) => {
+          console.log('Error getting location', error);
+    });
   }
 
   loadMap(position:Position){
@@ -99,6 +103,30 @@ export class GoRoutePage {
 
   }
 
+  geocodeLatLng(latlng:any,map) {
+    
+    this.geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status === 'OK') {
+        if (results[1]) {
+  //          map.setZoom(11);
+         // var marker = new google.maps.Marker({
+           // position: latlng,
+            //map: map
+          //});
+          //this.newLocation.lat = latlng.lat;
+          address = results[1].formatted_address;
+          //this.infowindow.setContent(results[1].formatted_address);
+          //this.infowindow.open(this.map, marker);
+        } else {
+          console.log('No results found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+    });
+    
+  }
+
 
   close(){
     this.viewController.dismiss()
@@ -111,7 +139,7 @@ export class GoRoutePage {
     headers.append("Content-Type","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
     console.log(this.data)
-    this.http.post("http://192.168.1.4/reservePark",this.data,{headers:headers})
+    this.http.post(this.ip+"reservePark",this.data,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
@@ -123,6 +151,8 @@ export class GoRoutePage {
           });
           
           toast.present();      
+          this.viewController.dismiss()
+          this.navCtrl.setRoot(OrdersPage);
         }
 
       },

@@ -1,3 +1,4 @@
+import { OrdersPage } from './../pages/orders/orders';
 import { RegisterPage } from './../pages/register/register';
 import { Component,ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
@@ -36,8 +37,14 @@ export class MyApp {
     this.pages=[
       {titulo:"Inicio",component: HomePage , icon: "home"},
       {titulo:"Perfil",component: ProfilePage , icon: "person"},
-      {titulo:"Parquaderos",component: ProductosPage , icon: "star"}
+      
+      {titulo:"Ordenes",component: OrdersPage , icon: "cart"}
     ];
+
+    if(localStorage.getItem("role_id")=='2'){
+      this.pages.push({titulo:"Parquaderos",component: ProductosPage , icon: "star"});
+    }
+    
   }
 
   goToPage(page){
@@ -46,6 +53,7 @@ export class MyApp {
 
  closeSession(){
   localStorage.removeItem("token");
+  localStorage.removeItem("role_id");
   this.nav.setRoot(LoginPage);
  }
 }

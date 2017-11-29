@@ -16,7 +16,7 @@
 <ion-content padding>
     <ion-item>
         <ion-label>¿Que tipo eres?</ion-label>
-        <ion-select popover [(ngModel)]="form.type_id">
+        <ion-select popover [(ngModel)]="form.role_id">
           <ion-option value="client">Cliente</ion-option>
           <ion-option value="proveedor">Proveedor</ion-option>
         </ion-select>
@@ -34,7 +34,7 @@
 
       <ion-item>
           <ion-label fixed>Email</ion-label>
-          <ion-input type="email" [(ngModel)]="form.email"></ion-input>
+          <ion-input type="email" [(ngModel)]="form.email" pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/" required></ion-input>
       </ion-item>
 
       <ion-item>
