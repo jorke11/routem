@@ -4,7 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {Geolocation,Geoposition} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation'
 
 declare var google:any
 var lat:any
@@ -89,7 +89,7 @@ export class ModalProductsPage {
         zoom:16
     })
 
-    let directionsService = new google.maps.DirectionsService;
+    //let directionsService = new google.maps.DirectionsService;
     let directionsDisplay = new google.maps.DirectionsRenderer;
 
       directionsDisplay.setMap(this.map);

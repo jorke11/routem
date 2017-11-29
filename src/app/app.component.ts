@@ -1,5 +1,5 @@
 import { OrdersPage } from './../pages/orders/orders';
-import { RegisterPage } from './../pages/register/register';
+//import { RegisterPage } from './../pages/register/register';
 import { Component,ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';

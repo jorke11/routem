@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ViewController, ToastController } 
 
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Geolocation,Geoposition} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation'
 
 declare var google:any
 var address:any

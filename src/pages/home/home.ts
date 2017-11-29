@@ -2,19 +2,9 @@ import { Component,ViewChild,ElementRef  } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Geolocation,Geoposition} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation'
 
 import { GoRoutePage } from './../go-route/go-route';
-
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
 
 declare var google:any
 
