@@ -27,6 +27,19 @@ export class MyApp {
     }else{
       this.rootPage = HomePage;
     }
+
+    this.pages=[];
+
+    if(localStorage.getItem("role_id")=='2'){
+      this.rootPage = OrdersPage;
+      this.pages.push({titulo:"Inicio",component: OrdersPage , icon: "home"});
+      this.pages.push({titulo:"Parquaderos",component: ProductosPage , icon: "star"});
+    }else{
+      this.pages.push({titulo:"Inicio",component: HomePage , icon: "home"});
+      this.pages.push({titulo:"Ordenes",component: OrdersPage , icon: "cart"});
+    }
+
+    this.pages.push({titulo:"Perfil",component: ProfilePage , icon: "person"});
   
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -35,16 +48,7 @@ export class MyApp {
       splashScreen.hide();
     });
 
-    this.pages=[
-      {titulo:"Inicio",component: HomePage , icon: "home"},
-      {titulo:"Perfil",component: ProfilePage , icon: "person"},
-      
-      {titulo:"Ordenes",component: OrdersPage , icon: "cart"}
-    ];
-
-    //if(localStorage.getItem("role_id")=='2'){
-      this.pages.push({titulo:"Parquaderos",component: ProductosPage , icon: "star"});
-    //}
+    
     
   }
 

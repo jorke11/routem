@@ -24,6 +24,7 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http) {
     this.data={};
     this.ip='http://18.221.23.10:8080/'
+    //this.ip='http://192.169.0.14/'
     this.getProfile();
    
   }

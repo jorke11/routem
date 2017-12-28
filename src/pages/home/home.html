@@ -1,7 +1,7 @@
 
 
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color='primary'>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -13,7 +13,7 @@
   
   <ion-content padding>
     
-      <div #map id="map"></div>  
+      <div #map id="map" data-tap-disabled="true"></div>  
 
       <ion-list>
           <ion-item *ngFor="let row of data">
@@ -25,7 +25,7 @@
             <p>Cupos {{row.available}}</p>
             <p>Distancia {{row.distance}}</p>
             <p>Tiempo Aproximado {{row.duration}}</p>
-            <button ion-button clear item-end (click)="order(row)">Solicitar</button>
+            <button ion-button clear item-end (click)="order(row)"[disabled]="row.cupo">Solicitar</button>
           </ion-item>
         </ion-list>
   </ion-content>

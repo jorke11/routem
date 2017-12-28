@@ -32,6 +32,7 @@ export class HomePage {
   //this.ip='http://18.220.4.248/'
   //this.ip="http://192.168.0.14/"
   this.ip='http://18.221.23.10:8080/'
+  //this.ip='http://192.169.0.14/'
   }
 
   ionViewDidLoad() {
@@ -93,7 +94,6 @@ export class HomePage {
     .map(res=>res.json())
     .subscribe(
       data=>{
-        
         for(let row in data.data){
           let myLatLng = {lat:parseFloat(data.data[row].latitude),lng:parseFloat(data.data[row].longitude)}
           

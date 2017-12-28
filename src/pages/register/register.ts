@@ -24,6 +24,7 @@ export class RegisterPage {
     this.form.last_name='';
     this.form.password='';
     this.form.confirmation='';
+    //this.ip='http://192.169.0.14/'
   }
 
   ionViewDidLoad() {

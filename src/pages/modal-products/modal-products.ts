@@ -28,7 +28,7 @@ export class ModalProductsPage {
   longitude:any
   geocoder:any
   infowindow:any
-ip:any
+  ip:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera,
     public http:Http,public viewCtrl:ViewController,public toastCtrl:ToastController,
@@ -40,9 +40,10 @@ ip:any
     //this.ip='http://18.220.4.248/'
     //this.ip="http://192.168.0.14/"
     this.ip='http://18.221.23.10:8080/'
+    //this.ip='http://localhost/'
     this.geocoder = new google.maps.Geocoder;
     this.infowindow = new google.maps.InfoWindow;
-
+     
   }
 
   ionViewDidLoad() {
@@ -63,11 +64,11 @@ ip:any
     
     this.camera.getPicture(options).then((imageData) => {
 			// imageData is either a base64 encoded string or a file URI
-			// If it's base64:
+      // If it's base64:
       this.data.img = 'data:image/jpeg;base64,' + imageData;	
 
 		}, (errc) => {
-			console.log(JSON.stringify(errc))
+			alert(JSON.stringify(errc))
 		});
   }
 
@@ -166,11 +167,11 @@ ip:any
 
     this.data.latitude=lat
     this.data.longitude=lng
-
     this.http.post(this.ip+"newPark",this.data,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
+        alert(JSON.stringify(data))
         if(data.status==true){
           let toast = this.toastCtrl.create({
             message: 'Parqueadero creado',
@@ -183,8 +184,8 @@ ip:any
 
       },
       err=>{
-        console.log("error")
-        console.log(JSON.stringify(err));
+        alert("error")
+        alert(JSON.stringify(err));
       }
     );
 

@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color='primary'>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -27,7 +27,11 @@
                 {{row.address}}
               </ion-card-content>
               <ion-item>
-                  <button ion-button icon-left clear item-end [disabled]="row.status_id" (click)="cancel(row)">
+                  <button ion-button icon-left clear item-end [disabled]="row.status_id" (click)="confirm(row)">
+                      <ion-icon name="navigate"></ion-icon>
+                      Confirmar
+                    </button>
+                  <button ion-button icon-left clear item-end [disabled]="row.status_id" (click)="cancel(row)" ng-show="row.status_id==true">
                     <ion-icon name="navigate"></ion-icon>
                     Cancelar
                   </button>

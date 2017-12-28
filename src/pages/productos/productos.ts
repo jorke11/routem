@@ -23,6 +23,7 @@ export class ProductosPage {
     this.data=[];
     this.ip="http://192.168.1.2/";
     this.ip='http://18.221.23.10:8080/'
+    //this.ip='http://192.169.0.14/'
     this.headers= new Headers();
 
     this.headers.append("Accept","application/json");
@@ -48,7 +49,9 @@ export class ProductosPage {
         this.data = data.data;
       },
       err=>{
-        console.log("error");
+        alert("error");
+        alert(JSON.stringify(err))
+        
       }
     );
 

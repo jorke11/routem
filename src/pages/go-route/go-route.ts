@@ -1,4 +1,4 @@
-import { OrdersPage } from './../orders/orders';
+//import { OrdersPage } from './../orders/orders';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 
@@ -148,15 +148,15 @@ constructor(public navCtrl: NavController, public navParams: NavParams,public ge
       data=>{
         this.data=data;
         if(data.status==true){
-          let toast = this.toastCtrl.create({
-            message: data.msg,
-            duration: 2500
-          });
-          
-          toast.present();      
           this.viewController.dismiss()
-          this.navCtrl.setRoot(OrdersPage);
+          //this.navCtrl.setRoot(OrdersPage);
         }
+
+        let toast = this.toastCtrl.create({
+          message: data.msg,
+          duration: 2500
+        });
+        toast.present();    
 
       },
       err=>{

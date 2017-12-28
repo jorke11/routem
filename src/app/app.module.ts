@@ -15,8 +15,12 @@ import { RegisterPage } from '../pages/register/register';
 import { OrdersPage } from '../pages/orders/orders';
 
 
-import { Camera } from '@ionic-native/camera';
+//import { Camera } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera'
+//import { Geolocation } from '@ionic-native/geolocation';
+
 import { Geolocation } from '@ionic-native/geolocation';
+
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 
